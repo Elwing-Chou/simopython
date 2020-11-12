@@ -4,7 +4,12 @@
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 import json
+import os
 from urllib.request import urlopen, urlretrieve
+
+dirname = "google"
+if not os.path.exists(dirname):
+    os.makedirs(dirname)
 
 url = "https://www.google.com/doodles/json/2020/6?hl=zh_TW"
 response = urlopen(url)
