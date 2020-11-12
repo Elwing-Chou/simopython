@@ -18,4 +18,6 @@ pictures = json.load(response)
 for p in pictures:
     print(p["title"])
     imgurl = "https:" + p["url"]
-    print(imgurl)
+    fn = imgurl.split("/")[-1]
+    total = os.path.join(dirname, fn)
+    urlretrieve(imgurl, total)
