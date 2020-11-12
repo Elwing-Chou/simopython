@@ -1,4 +1,6 @@
 import tkinter as tk
+import time
+import threading
 
 class MyFrame(tk.LabelFrame):
     def __init__(self, parent):
@@ -17,9 +19,14 @@ class MyFrame(tk.LabelFrame):
         self.result.pack(expand=True, fill=tk.BOTH, padx=20, pady=20)
 
     def bmi(self):
-        w, h = float(self.e1.get()), float(self.e2.get())
-        b = w / (h / 100) ** 2
-        self.result["text"] = str(b)
+        def work():
+            self.b1["state"] = tk.DISABLED
+            time.sleep(5)
+            w, h = float(self.e1.get()), float(self.e2.get())
+            b = w / (h / 100) ** 2
+            self.result["text"] = str(b)
+            self.b1["state"] = tk.ACTIVE
+        threading.Thread(target=work).start()
 
 
 window = tk.Tk()
