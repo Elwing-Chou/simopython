@@ -34,3 +34,14 @@ result = re.search(pat, target, re.VERBOSE | re.IGNORECASE)
 print(result)
 print(result.group(0))
 print(result.groups())
+
+# Greedy v.s. Non-Greedy
+pat = r"b{2,4}"
+target = "bbbbbba"
+result = re.search(pat, target)
+print(result)
+
+pat = r"b{2,4}?"
+target = "bbbbbba"
+result = re.search(pat, target)
+print(result)
